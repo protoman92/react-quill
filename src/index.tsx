@@ -12,7 +12,7 @@ import Quill, {
   Sources,
   StringMap,
 } from 'quill';
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 export type Value = string | DeltaStatic;
