@@ -533,9 +533,7 @@ class ReactQuill extends React.Component<ReactQuillProps, ReactQuillState> {
     const currentSelection = this.getEditorSelection();
     const hasGainedFocus = !currentSelection && nextSelection;
     const hasLostFocus = currentSelection && !nextSelection;
-
     if (isEqual(nextSelection, currentSelection)) return;
-
     this.selection = nextSelection;
     this.props.onChangeSelection?.(nextSelection, source, editor);
 
@@ -546,9 +544,14 @@ class ReactQuill extends React.Component<ReactQuillProps, ReactQuillState> {
     }
   }
 
+  /**
+   * Focus the editor, and set the caret to the end so user can continue
+   * typing right away.
+   */
   focus(): void {
     if (!this.editor) return;
     this.editor.focus();
+    this.editor.setSelection(this.editor.getLength() - 1, 0);
   }
 
   blur(): void {
